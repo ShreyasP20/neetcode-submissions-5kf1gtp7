@@ -1,0 +1,12 @@
+class Solution:
+    def subsetXORSum(self, nums: List[int]) -> int:
+        def dfs(i, current_xor):
+            if i == len(nums):
+                return current_xor
+
+            include = dfs(i + 1, current_xor ^ nums[i])
+            skip = dfs(i + 1, current_xor)
+
+            return include + skip
+        
+        return dfs(0, 0)
